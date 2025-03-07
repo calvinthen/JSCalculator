@@ -15,4 +15,21 @@ submitBtn.onclick = function(){
     {
         subResult.textContent = "You are NOT Subscribed !";
     }
+
+    if(visaRadioBtn.checked)
+    {
+        paymentResult.textContent = "You are paying with Visa";
+    }
+    else if(masterCardRadioBtn.checked)
+    {
+        paymentResult.textContent = "You are paying with Master Card";
+    }
+    else if(paypalRadioBtn.checked)
+    {
+        paymentResult.textContent = "You are paying with Paypal";
+    }
+    else
+    {
+        paymentResult.textContent = "Please select you payment !";
+    }
 }
