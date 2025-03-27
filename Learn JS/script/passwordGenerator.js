@@ -13,15 +13,30 @@ function generatePassword(length, includeLowerCase, includeUpperCase, includeNum
     allowedChars += includeNumbers ? numbers : "";
     allowedChars += includeSymbols ? symbols : "";
 
-    console.log(allowedChars);
-    return '';
+    if(length <= 0)
+    {
+        return `(password length must be at least 1)`;
+    }
+    if(allowedChars.length === 0)
+    {
+        return `(At least 1 set of character need to be selected)`;
+    }
+
+    for(let i=0;i<length;i++)
+    {
+        const randomIndex = Math.floor(Math.random() * allowedChars.length);
+        password += allowedChars[randomIndex];
+    }
+
+    console.log(password);
+    return password;
 }
 
 const passwordLength = 12;
-const includeLowerCase = true;
-const includeUpperCase = true;
-const includeNumbers = true;
-const includeSymbols = true;
+let includeLowerCase = false;
+let includeUpperCase = false;
+let includeNumbers = false;
+let includeSymbols = false;
 
 //Checkbox
 const lowerCaseBox = document.getElementById("lowerCaseBox");
@@ -33,13 +48,30 @@ console.log(`Generated password: ${password}`);
 
 function includedPasswordCheckBox()
 {
+    includeLowerCase = false;
+    includeUpperCase = false;
+    includeNumbers = false;
+    includeSymbols = false;
+
     if(lowerCaseBox.checked)
     {
-        console.log("Lower Case Included");    
-    }   
-    else
+        includeLowerCase = true; 
+    } 
+    if(upperCaseBox.checked)
     {
-        console.log("Lower Case not Included");
-    }
-    console.log("Jalan");
+        includeUpperCase = true; 
+    } 
+    if(numberCaseBox.checked)
+    {
+        includeNumbers = true; 
+    } 
+    if(symbolCaseBox.checked)
+    {
+        includeSymbols = true; 
+    } 
+    
+    
+    let password = generatePassword(passwordLength,includeLowerCase,includeUpperCase,includeNumbers,includeSymbols);
+
+    resutPassword.textContent = `Your password is ${password}`;
 }
