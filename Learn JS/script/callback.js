@@ -1,5 +1,5 @@
 
-sum(displayConsole, 20, 30);
+sum(displayResult, 20, 30);
 
 function sum(callback, x, y)
 {
@@ -10,4 +10,9 @@ function sum(callback, x, y)
 function displayConsole(result)
 {
     console.log(result);
+}
+
+function displayResult(result)
+{
+    document.getElementById("resultCallback").textContent = result;
 }
